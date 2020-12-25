@@ -34,6 +34,9 @@ class ChangeNotifierStateClass extends ChangeNotifier {
 class ChangeNotifierScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    /// Watching a [ChangeNotifier] with `provider` tags this [BuildContext]
+    /// to rebuild any time there is a change. Doesn't matter if this is a
+    /// [StatelessWidget] or a [StatefulWidget].
     final state = context.watch<ChangeNotifierStateClass>();
 
     return Scaffold(
@@ -52,6 +55,8 @@ class ChangeNotifierScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              /// No builders required because the ancestor context has been tagged
+              /// for rebuilds.
               Text('Count: ${state.count}'),
               Text('isAwesome: ${state.isAwesome}'),
               Text('is11AndAwesome: ${state.is11AndAwesome}'),
